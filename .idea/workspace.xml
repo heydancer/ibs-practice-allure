@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bc08535-6cc1-457a-ab42-9bdfa090ac8a" name="Changes" comment="">
+    <list default="true" id="5bc08535-6cc1-457a-ab42-9bdfa090ac8a" name="Changes" comment="fix: изменил базовый и тестовый класс">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/ibs/practice/tests/ui/SeleniumPracticeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/ibs/practice/tests/ui/SeleniumPracticeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/ibs/practice/tests/ui/pages/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/ibs/practice/tests/ui/pages/BasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/ibs/practice/tests/ui/pages/FoodPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/ibs/practice/tests/ui/pages/FoodPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,9 +31,72 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
+    "last_opened_file_path": "/Users/aleksand.ustiantcev/WorkingProject/ibs-prcatice-allure",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "spring.configuration.checksum": "724bc350303565055a20b2fb89dcda24",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/java/ru/ibs/practice/tests/ui" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.ibs.practice.tests.ui" />
+      <recent name="ru.ibs.practice.tests.ui.general" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean test" />
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.SpringJdbcPracticeTest">
+    <configuration name="SeleniumPracticeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ibs-prcatice-allure" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.ibs.practice.tests.ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.ibs.practice.tests.ui" />
+      <option name="MAIN_CLASS_NAME" value="ru.ibs.practice.tests.ui.SeleniumPracticeTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringJdbcPracticeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ibs-prcatice-allure" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.ibs.practice.tests.db.spring.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.ibs.practice.tests.db.spring" />
+      <option name="MAIN_CLASS_NAME" value="ru.ibs.practice.tests.db.spring.SpringJdbcPracticeTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SpringJdbcPracticeTest" />
+        <item itemvalue="JUnit.SeleniumPracticeTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -38,10 +105,67 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1693500147152</updated>
+      <workItem from="1693516406839" duration="397000" />
+      <workItem from="1693523875236" duration="384000" />
     </task>
+    <task id="LOCAL-00001" summary="fix: изменил версию spring JDBC">
+      <created>1693516549756</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1693516549757</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: добавил тестовый стенд и ручные тест-кейсы">
+      <created>1693516595489</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1693516595489</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: добавил webdriver manager">
+      <created>1693516689467</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1693516689467</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat: добавил странички">
+      <created>1693516730427</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1693516730427</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix: изменил базовый и тестовый класс">
+      <created>1693516785510</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1693516785510</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix: изменил версию spring JDBC" />
+    <MESSAGE value="feat: добавил тестовый стенд и ручные тест-кейсы" />
+    <MESSAGE value="feat: добавил webdriver manager" />
+    <MESSAGE value="feat: добавил странички" />
+    <MESSAGE value="fix: изменил базовый и тестовый класс" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: изменил базовый и тестовый класс" />
   </component>
 </project>

@@ -1,5 +1,6 @@
 package ru.ibs.practice.tests.ui.pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +18,7 @@ public class BasePage {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
-
+    @Step()
     public void open(String url) {
         log.info("Переходим по адресу: {}", url);
 

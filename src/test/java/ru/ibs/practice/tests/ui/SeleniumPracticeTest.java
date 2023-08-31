@@ -1,7 +1,9 @@
 package ru.ibs.practice.tests.ui;
 
+import io.qameta.allure.Description;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.ibs.practice.tests.ui.general.BaseTestUI;
 
@@ -18,6 +20,8 @@ public class SeleniumPracticeTest extends BaseTestUI {
     }
 
     @Test
+    @DisplayName("Добавление овоща, экзотический = false")
+    @Description("Проверка возможности добавить продукт с типом 'Овощ' не экзотический")
     public void testAddingNonExoticVegetable() {
         foodPage.clickAddProductButton()
                 .inputProductName(NON_EXOTIC_PRODUCT)
@@ -28,6 +32,8 @@ public class SeleniumPracticeTest extends BaseTestUI {
     }
 
     @Test
+    @DisplayName("Добавление овоща, экзотический = true")
+    @Description("Проверка возможности добавить продукт с типом 'фрукт' экзотический")
     public void testAddingExoticVegetable() {
         foodPage.clickAddProductButton()
                 .inputProductName(EXOTIC_PRODUCT)
