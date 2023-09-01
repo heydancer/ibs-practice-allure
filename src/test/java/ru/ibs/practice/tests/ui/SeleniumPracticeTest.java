@@ -1,13 +1,14 @@
 package ru.ibs.practice.tests.ui;
 
 import io.qameta.allure.Description;
-import lombok.extern.slf4j.Slf4j;
+import io.qameta.allure.Owner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.ibs.practice.tests.ui.general.BaseTestUI;
 
-@Slf4j
+@Owner("Ustiantcev Aleksandr")
+@DisplayName("Проверка добавления продуктов UI")
 public class SeleniumPracticeTest extends BaseTestUI {
     private static final String NON_EXOTIC_PRODUCT = "Морковь";
     private static final String EXOTIC_PRODUCT = "Дуриан";

@@ -1,7 +1,11 @@
 package ru.ibs.practice.tests.db.spring;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.ibs.practice.tests.db.model.Food;
 import ru.ibs.practice.tests.db.spring.general.BaseTestDB;
@@ -10,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
+@Owner("Ustiantcev Aleksandr")
+@DisplayName("Проверка добавления товара в БД с использованием Spring JDBC Template")
 public class SpringJdbcPracticeTest extends BaseTestDB {
     private static final String SQL_SHOW_TABLES = "SHOW TABLES;";
     private static final String SQL_INSERT_FOOD = "INSERT INTO food(food_name, food_type, food_exotic) VALUES (?, ?, ?);";
@@ -19,13 +25,16 @@ public class SpringJdbcPracticeTest extends BaseTestDB {
     private Food lastFood;
 
     @Test
+    @DisplayName("Добавление товара в базу данных")
+    @Description("Тестирование функциональности добавления нового товара в базу данных")
     public void testAddingProductInDb() {
         preCondition();
-        firstStep();
-        secondStep();
+        addProductToDb();
+        findAllProductsInDb();
         postCondition();
     }
 
+    @Step("Проверить наличие таблицы 'FOOD' в схеме БД выполнив SQL-запрос: SHOW TABLES;")
     private void preCondition() {
         log.info("Проверка наличия таблицы 'FOOD' в схеме БД");
 
@@ -43,7 +52,8 @@ public class SpringJdbcPracticeTest extends BaseTestDB {
         Assertions.assertTrue(tableExists, "Таблица 'FOOD' не найдена в БД");
     }
 
-    private void firstStep() {
+    @Step("Выполнить SQL-запрос на добавление нового товара в таблицу FOOD")
+    private void addProductToDb() {
         log.info("Вставка новой записи в таблицу 'FOOD'");
 
         int rowsInserted = jdbcTemplate.update(SQL_INSERT_FOOD, "Морковь", "VEGETABLE", 0);
@@ -51,7 +61,8 @@ public class SpringJdbcPracticeTest extends BaseTestDB {
         Assertions.assertEquals(1, rowsInserted, "Запись не была добавлена в таблицу");
     }
 
-    private void secondStep() {
+    @Step("Выполнить SQL-запрос для получения списка всех товаров таблицы FOOD")
+    private void findAllProductsInDb() {
         log.info("Выполнение SQL-запроса для получения списка всех товаров таблицы 'FOOD'");
 
         List<Food> foodList = jdbcTemplate.query(SQL_SELECT_ALL_FOOD,
@@ -76,6 +87,7 @@ public class SpringJdbcPracticeTest extends BaseTestDB {
                 "Значение столбца 'food_exotic не соответствует значению '0' -> не экзотический");
     }
 
+    @Step("Выполнение SQL-запроса для удаления записи из таблицы 'FOOD'")
     private void postCondition() {
         log.info("Выполнение SQL-запроса для удаления записи из таблицы 'FOOD'");
 

@@ -1,7 +1,11 @@
 package ru.ibs.practice.tests.db.jdbc;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.ibs.practice.tests.db.jdbc.general.BaseTestDB;
 import ru.ibs.practice.tests.db.model.Food;
@@ -12,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
+@Owner("Ustiantcev Aleksandr")
+@DisplayName("Проверка добавления товара в БД с использованием JDBC")
 public class JdbcPracticeTest extends BaseTestDB {
     private static final String SQL_SHOW_TABLES = "SHOW TABLES;";
     private static final String SQL_INSERT_FOOD = "INSERT INTO food(food_name, food_type, food_exotic) VALUES (?, ?, ?);";
@@ -21,17 +27,19 @@ public class JdbcPracticeTest extends BaseTestDB {
     private Food lastFood;
 
     @Test
+    @DisplayName("Добавление товара в базу данных")
+    @Description("Тестирование функциональности добавления нового товара в базу данных")
     public void testAddingProductInDb() {
         try {
             preCondition();
-            firstStep();
-            secondStep();
+            addProductToDb();
+            findAllProductsInDb();
             postCondition();
         } catch (SQLException e) {
             Assertions.fail("Ошибка при добавлении продукта в базу данных", e);
         }
     }
-
+    @Step("Проверить наличие таблицы 'FOOD' в схеме БД выполнив SQL-запрос: SHOW TABLES;")
     private void preCondition() throws SQLException {
         log.info("Проверка наличия таблицы 'FOOD' в схеме БД");
 
@@ -49,8 +57,8 @@ public class JdbcPracticeTest extends BaseTestDB {
 
         Assertions.assertTrue(tableExists, "Таблица 'FOOD' не найдена в БД");
     }
-
-    private void firstStep() throws SQLException {
+    @Step("Выполнить SQL-запрос на добавление нового товара в таблицу FOOD")
+    private void addProductToDb() throws SQLException {
         log.info("Вставка новой записи в таблицу 'FOOD'");
 
         preparedStatement = connection.prepareStatement(SQL_INSERT_FOOD);
@@ -62,8 +70,8 @@ public class JdbcPracticeTest extends BaseTestDB {
 
         Assertions.assertEquals(1, rowsInserted, "Запись не была добавлена в таблицу");
     }
-
-    private void secondStep() throws SQLException {
+    @Step("Выполнить SQL-запрос для получения списка всех товаров таблицы FOOD")
+    private void findAllProductsInDb() throws SQLException {
         log.info("Выполнение SQL-запроса для получения списка всех товаров таблицы 'FOOD'");
 
         List<Food> foodList = new ArrayList<>();
@@ -93,7 +101,7 @@ public class JdbcPracticeTest extends BaseTestDB {
         Assertions.assertEquals(0, lastFood.getExotic(),
                 "Значение столбца 'food_exotic не соответствует значению '0' -> не экзотический");
     }
-
+    @Step("Выполнение SQL-запроса для удаления записи из таблицы 'FOOD'")
     private void postCondition() throws SQLException {
         log.info("Выполнение SQL-запроса для удаления записи из таблицы 'FOOD'");
 

@@ -18,7 +18,7 @@ public class BasePage {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
-    @Step()
+
     public void open(String url) {
         log.info("Переходим по адресу: {}", url);
 
