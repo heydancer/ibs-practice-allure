@@ -1,44 +1,34 @@
 package ru.ibs.practice.tests.db.jdbc.general;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import ru.ibs.practice.config.DataSourceConfig;
+import ru.ibs.practice.framework.manager.db.DataBaseManager;
+import ru.ibs.practice.framework.manager.db.DataSourceManager;
+import ru.ibs.practice.framework.manager.db.impl.JDBCManager;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class BaseTestDB {
-    protected Connection connection;
-    protected PreparedStatement preparedStatement;
-    private static DataSource dataSource;
+    private static Connection connection;
+    protected static DataBaseManager dataBaseManager;
 
     @BeforeAll
     public static void setUp() {
-        dataSource = new DataSourceConfig().getDataSource();
-    }
+        DataSource dataSource = DataSourceManager.getDataSourceManager().getDataSource();
 
-    @BeforeEach
-    public void setConnection() {
         try {
             connection = dataSource.getConnection();
         } catch (SQLException e) {
             throw new RuntimeException("Не удалось установить соединение с базой данных");
         }
+
+        dataBaseManager = new JDBCManager(connection);
     }
 
-    @AfterEach
-    public void close() {
-        if (preparedStatement != null) {
-            try {
-                preparedStatement.close();
-            } catch (SQLException e) {
-                throw new RuntimeException("Ошибка при закрытии PreparedStatement");
-            }
-        }
-
+    @AfterAll
+    public static void close() {
         if (connection != null) {
             try {
                 connection.close();

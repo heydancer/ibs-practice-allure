@@ -1,20 +1,25 @@
 package ru.ibs.practice.tests.ui.general;
 
 import org.junit.jupiter.api.AfterAll;
-import org.openqa.selenium.WebDriver;
-import ru.ibs.practice.config.SeleniumConfig;
-import ru.ibs.practice.tests.ui.manager.DriverManager;
-import ru.ibs.practice.tests.ui.pages.FoodPage;
-import ru.ibs.practice.tests.ui.pages.HomePage;
+import org.junit.jupiter.api.BeforeEach;
+import ru.ibs.practice.framework.manager.ui.DriverManager;
+import ru.ibs.practice.framework.manager.ui.PageManager;
+import ru.ibs.practice.framework.manager.common.PropertiesManager;
 
 public class BaseTestUI {
-    protected static WebDriver driver = DriverManager.initDriver();
-    protected SeleniumConfig config = new SeleniumConfig();
-    protected HomePage homePage = new HomePage(driver);
-    protected FoodPage foodPage = new FoodPage(driver);
+    protected PageManager pageManager = PageManager.getPageManager();
+    private final PropertiesManager propertiesManager = PropertiesManager.getPropertiesManager();
+    private static final DriverManager driverManager = DriverManager.getDriverManager();
+
+    @BeforeEach
+    public void beforeEach() {
+        driverManager
+                .getDriver()
+                .get(propertiesManager.get("base.url"));
+    }
 
     @AfterAll
-    public static void close() {
-        driver.quit();
+    public static void afterAll() {
+        driverManager.quitDriver();
     }
 }

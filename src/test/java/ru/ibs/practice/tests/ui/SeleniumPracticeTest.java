@@ -2,7 +2,6 @@ package ru.ibs.practice.tests.ui;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.ibs.practice.tests.ui.general.BaseTestUI;
@@ -12,35 +11,37 @@ import ru.ibs.practice.tests.ui.general.BaseTestUI;
 public class SeleniumPracticeTest extends BaseTestUI {
     private static final String NON_EXOTIC_PRODUCT = "Морковь";
     private static final String EXOTIC_PRODUCT = "Дуриан";
-
-    @BeforeEach
-    public void precondition() {
-        homePage.open(config.getBaseUrl());
-        homePage.navigateToFoodPage();
-
-    }
+    private static final String VEGETABLE = "Овощ";
+    private static final String FRUIT = "Фрукт";
+    private static final String FOOD = "Товары";
 
     @Test
     @DisplayName("Добавление овоща, экзотический = false")
     @Description("Проверка возможности добавить продукт с типом 'Овощ' не экзотический")
     public void testAddingNonExoticVegetable() {
-        foodPage.clickAddProductButton()
+        pageManager.getHomePage()
+                .clickOnDropdownMenu()
+                .selectBtnInDropdownMenuByText(FOOD)
+                .clickAddProductButton()
                 .inputProductName(NON_EXOTIC_PRODUCT)
-                .selectTypeOfVegetable()
-                .setExoticCheckBoxToFalse()
+                .selectTypeByText(VEGETABLE)
+                .setExoticCheckBox(false)
                 .clickSaveButton()
-                .checkVegetableToEndTable(NON_EXOTIC_PRODUCT);
+                .checkFoodToEndTable(NON_EXOTIC_PRODUCT, VEGETABLE, false);
     }
 
     @Test
     @DisplayName("Добавление овоща, экзотический = true")
-    @Description("Проверка возможности добавить продукт с типом 'фрукт' экзотический")
+    @Description("Проверка возможности добавить продукт с типом 'Фрукт' экзотический")
     public void testAddingExoticVegetable() {
-        foodPage.clickAddProductButton()
+        pageManager.getHomePage()
+                .clickOnDropdownMenu()
+                .selectBtnInDropdownMenuByText(FOOD)
+                .clickAddProductButton()
                 .inputProductName(EXOTIC_PRODUCT)
-                .selectTypeOfFruit()
-                .setExoticCheckBoxToTrue()
+                .selectTypeByText(FRUIT)
+                .setExoticCheckBox(true)
                 .clickSaveButton()
-                .checkFruitToEndTable(EXOTIC_PRODUCT);
+                .checkFoodToEndTable(EXOTIC_PRODUCT, FRUIT, true);
     }
 }

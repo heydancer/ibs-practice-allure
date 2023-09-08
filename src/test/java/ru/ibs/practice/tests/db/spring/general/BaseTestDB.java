@@ -1,23 +1,16 @@
 package ru.ibs.practice.tests.db.spring.general;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.springframework.jdbc.core.JdbcTemplate;
-import ru.ibs.practice.config.DataSourceConfig;
-
-import javax.sql.DataSource;
+import ru.ibs.practice.framework.manager.db.DataBaseManager;
+import ru.ibs.practice.framework.manager.db.DataSourceManager;
+import ru.ibs.practice.framework.manager.db.impl.SpringJDBCManager;
 
 public class BaseTestDB {
-    private static DataSource dataSource;
-    protected JdbcTemplate jdbcTemplate;
+    private static final DataSourceManager dataSourceManager = DataSourceManager.getDataSourceManager();
+    protected static DataBaseManager dataBaseManager;
 
     @BeforeAll
     public static void setUp() {
-        dataSource = new DataSourceConfig().getDataSource();
-    }
-
-    @BeforeEach
-    public void initJdbcTemplate() {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+        dataBaseManager = new SpringJDBCManager(dataSourceManager.getDataSource());
     }
 }
