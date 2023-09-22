@@ -1,6 +1,6 @@
 node("master") {
     stage('clean') {
-        cleanWs()
+         cleanWs()
     }
     
     stage('clone') {
