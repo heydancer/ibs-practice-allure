@@ -12,4 +12,9 @@ node("master") {
             mvn clean install
         '''
     }
+    stage('allure'){
+    allure includeProperties: false, jdk: '', 
+        results: [[path: 'target/reports/allure-results']]
+    
+    }
 }
